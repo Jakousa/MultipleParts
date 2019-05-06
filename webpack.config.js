@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   output: {
@@ -15,12 +16,17 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.vue$/,
+        use: 'vue-loader'
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
-    })
+    }),
+    new VueLoaderPlugin()
   ],
   devServer: {
     historyApiFallback: true,
